@@ -1,14 +1,25 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-//part 'post_bloc.freezed.dart';
+part 'post_bloc.freezed.dart';
 
 @freezed
 sealed class PostEvent implements _$PostEvent {
   const PostEvent._();
+
+  const factory PostEvent.addText({
+    required String text,
+  }) = _$AddTextPostEvent;
+
+  const factory PostEvent.attachText({
+    required String path,
+  }) = _$AttachFilePostEvent;
+
+  const factory PostEvent.send() = _$SendPostEvent;
 }
 
-sealed class PostState implements _$PostEvent {
+@freezed
+sealed class PostState implements _$PostState {
   const PostState._();
 
   ///Инициализированное состояние
